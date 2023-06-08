@@ -19,6 +19,7 @@ Cloud project Vagrant dummy cloud section repository..
 9. To stop the cluster, run:
 	```
 	./playbook-run.sh cluster-teardown
+	vagrant halt
 	```
 
 ## Repo structure
