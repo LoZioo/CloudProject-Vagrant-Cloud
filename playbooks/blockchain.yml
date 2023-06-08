@@ -1,0 +1,10 @@
+---
+- name: "Blockchain provisioning"
+  hosts: blockchain
+  become: true    # Become root.
+
+  tasks:
+    - name: "Pulling lozioo/blockchain docker image"
+      community.docker.docker_image:
+        name: lozioo/blockchain:latest
+        source: pull

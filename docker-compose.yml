@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  blockchain:
+    image: lozioo/blockchain:latest
+    restart: always
+
+    # Needed for printing logs.
+    stdin_open: true  # docker run -i
+    tty: true         # docker run -t
+
+    ports:
+      - 5090:5090
+
+    volumes:
+      - type: bind
+        source: ./data
+        target: /root/data
+
+    environment:
+    - HTTP_ADDRESS=0.0.0.0          # str:  IP address where the HTTP server listens for incoming connections.
+    - DB_FILE=./data/hash.db.json   # str:  Local DB file path.

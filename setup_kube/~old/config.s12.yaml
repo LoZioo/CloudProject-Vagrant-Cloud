@@ -1,0 +1,338 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Node
+  metadata:
+    annotations:
+      kubeadm.alpha.kubernetes.io/cri-socket: unix:///var/run/containerd/containerd.sock
+      node.alpha.kubernetes.io/ttl: "0"
+      projectcalico.org/IPv4Address: 192.168.45.72/24
+      projectcalico.org/IPv4IPIPTunnelAddr: 10.12.59.64
+      volumes.kubernetes.io/controller-managed-attach-detach: "true"
+    creationTimestamp: "2022-06-06T05:30:45Z"
+    labels:
+      beta.kubernetes.io/arch: amd64
+      beta.kubernetes.io/os: linux
+      kubernetes.io/arch: amd64
+      kubernetes.io/hostname: s12
+      kubernetes.io/os: linux
+      node-role.kubernetes.io/control-plane: ""
+      node.kubernetes.io/exclude-from-external-load-balancers: ""
+    name: s12
+    resourceVersion: "490"
+    uid: 4beeec7d-3853-4a08-9bf4-2a88a429c247
+  spec:
+    taints:
+    - effect: NoSchedule
+      key: node-role.kubernetes.io/master
+    - effect: NoSchedule
+      key: node-role.kubernetes.io/control-plane
+  status:
+    addresses:
+    - address: 192.168.45.72
+      type: InternalIP
+    - address: s12
+      type: Hostname
+    allocatable:
+      cpu: "4"
+      ephemeral-storage: "303417995172"
+      hugepages-1Gi: "0"
+      hugepages-2Mi: "0"
+      memory: 3923164Ki
+      pods: "110"
+    capacity:
+      cpu: "4"
+      ephemeral-storage: 329229596Ki
+      hugepages-1Gi: "0"
+      hugepages-2Mi: "0"
+      memory: 4025564Ki
+      pods: "110"
+    conditions:
+    - lastHeartbeatTime: "2022-06-06T05:31:01Z"
+      lastTransitionTime: "2022-06-06T05:31:01Z"
+      message: Calico is running on this node
+      reason: CalicoIsUp
+      status: "False"
+      type: NetworkUnavailable
+    - lastHeartbeatTime: "2022-06-06T05:31:09Z"
+      lastTransitionTime: "2022-06-06T05:30:40Z"
+      message: kubelet has sufficient memory available
+      reason: KubeletHasSufficientMemory
+      status: "False"
+      type: MemoryPressure
+    - lastHeartbeatTime: "2022-06-06T05:31:09Z"
+      lastTransitionTime: "2022-06-06T05:30:40Z"
+      message: kubelet has no disk pressure
+      reason: KubeletHasNoDiskPressure
+      status: "False"
+      type: DiskPressure
+    - lastHeartbeatTime: "2022-06-06T05:31:09Z"
+      lastTransitionTime: "2022-06-06T05:30:40Z"
+      message: kubelet has sufficient PID available
+      reason: KubeletHasSufficientPID
+      status: "False"
+      type: PIDPressure
+    - lastHeartbeatTime: "2022-06-06T05:31:09Z"
+      lastTransitionTime: "2022-06-06T05:31:09Z"
+      message: kubelet is posting ready status. AppArmor enabled
+      reason: KubeletReady
+      status: "True"
+      type: Ready
+    daemonEndpoints:
+      kubeletEndpoint:
+        Port: 10250
+    images:
+    - names:
+      - docker.io/calico/cni@sha256:26802bb7714fda18b93765e908f2d48b0230fd1c620789ba2502549afcde4338
+      - docker.io/calico/cni:v3.23.1
+      sizeBytes: 110500425
+    - names:
+      - docker.io/calico/cni@sha256:914823d144204288f881e49b93b6852febfe669074cd4e2a782860981615f521
+      - docker.io/calico/cni:v3.23.0
+      sizeBytes: 110494683
+    - names:
+      - k8s.gcr.io/etcd@sha256:13f53ed1d91e2e11aac476ee9a0269fdda6cc4874eba903efd40daf50c55eee5
+      - k8s.gcr.io/etcd:3.5.3-0
+      sizeBytes: 102143581
+    - names:
+      - docker.io/calico/node@sha256:d2c1613ef26c9ad43af40527691db1f3ad640291d5e4655ae27f1dd9222cc380
+      - docker.io/calico/node:v3.23.1
+      sizeBytes: 76574475
+    - names:
+      - docker.io/calico/node@sha256:4763820ecb4d8e82483a2ffabfec7fcded9603318692df210a778d223a4d7474
+      - docker.io/calico/node:v3.23.0
+      sizeBytes: 71573794
+    - names:
+      - quay.io/tigera/operator@sha256:526c06f827200856fb1f5594cc3f7d23935674cf20c22330e8ab9a6ddc484c8d
+      - quay.io/tigera/operator:v1.27.1
+      sizeBytes: 60267159
+    - names:
+      - k8s.gcr.io/kube-proxy@sha256:1652df3138207570f52ae0be05cbf26c02648e6a4c30ced3f779fe3d6295ad6d
+      - k8s.gcr.io/kube-proxy:v1.24.1
+      sizeBytes: 39515102
+    - names:
+      - k8s.gcr.io/kube-proxy@sha256:c957d602267fa61082ab8847914b2118955d0739d592cc7b01e278513478d6a8
+      - k8s.gcr.io/kube-proxy:v1.24.0
+      sizeBytes: 39515042
+    - names:
+      - k8s.gcr.io/kube-apiserver@sha256:ad9608e8a9d758f966b6ca6795b50a4723982328194bde214804b21efd48da44
+      - k8s.gcr.io/kube-apiserver:v1.24.1
+      sizeBytes: 33796386
+    - names:
+      - k8s.gcr.io/kube-apiserver@sha256:a04522b882e919de6141b47d72393fb01226c78e7388400f966198222558c955
+      - k8s.gcr.io/kube-apiserver:v1.24.0
+      sizeBytes: 33796127
+    - names:
+      - k8s.gcr.io/kube-controller-manager@sha256:594a3f5bbdd0419ac57d580da8dfb061237fa48d0c9909991a3af70630291f7a
+      - k8s.gcr.io/kube-controller-manager:v1.24.1
+      sizeBytes: 31035304
+    - names:
+      - k8s.gcr.io/kube-controller-manager@sha256:df044a154e79a18f749d3cd9d958c3edde2b6a00c815176472002b7bbf956637
+      - k8s.gcr.io/kube-controller-manager:v1.24.0
+      sizeBytes: 31032816
+    - names:
+      - docker.io/rancher/mirrored-flannelcni-flannel@sha256:4bf659e449be809763b04f894f53a3d8610e00cf2cd979bb4fffc9470eb40d1b
+      - docker.io/rancher/mirrored-flannelcni-flannel:v0.17.0
+      sizeBytes: 19851228
+    - names:
+      - k8s.gcr.io/kube-scheduler@sha256:db842a7c431fd51db7e1911f6d1df27a7b6b6963ceda24852b654d2cd535b776
+      - k8s.gcr.io/kube-scheduler:v1.24.0
+      sizeBytes: 15488642
+    - names:
+      - k8s.gcr.io/kube-scheduler@sha256:0d2de567157e3fb97dfa831620a3dc38d24b05bd3721763a99f3f73b8cbe99c9
+      - k8s.gcr.io/kube-scheduler:v1.24.1
+      sizeBytes: 15488358
+    - names:
+      - k8s.gcr.io/coredns/coredns@sha256:5b6ec0d6de9baaf3e92d0f66cd96a25b9edbce8716f5f15dcd1a616b3abd590e
+      - k8s.gcr.io/coredns/coredns:v1.8.6
+      sizeBytes: 13585107
+    - names:
+      - docker.io/rancher/mirrored-flannelcni-flannel-cni-plugin@sha256:5dd61f95e28fa7ef897ff2fa402ce283e5078d334401d2f62d00a568f779f2d5
+      - docker.io/rancher/mirrored-flannelcni-flannel-cni-plugin:v1.0.1
+      sizeBytes: 3824037
+    - names:
+      - k8s.gcr.io/pause@sha256:bb6ed397957e9ca7c65ada0db5c5d1c707c9c8afc80a94acbe69f3ae76988f0c
+      - k8s.gcr.io/pause:3.7
+      sizeBytes: 311278
+    - names:
+      - k8s.gcr.io/pause@sha256:3d380ca8864549e74af4b29c10f9cb0956236dfb01c40ca076fb6c37253234db
+      - k8s.gcr.io/pause:3.6
+      sizeBytes: 301773
+    nodeInfo:
+      architecture: amd64
+      bootID: 0538ac95-0db4-4de4-a923-88bf271b9f56
+      containerRuntimeVersion: containerd://1.6.4
+      kernelVersion: 5.4.0-113-generic
+      kubeProxyVersion: v1.24.1
+      kubeletVersion: v1.24.1
+      machineID: 37067dbe5618477a87de6b0f65ff3e35
+      operatingSystem: linux
+      osImage: Ubuntu 20.04.4 LTS
+      systemUUID: 92c14d56-6d29-d2b1-0294-fe708677078b
+- apiVersion: v1
+  kind: Node
+  metadata:
+    annotations:
+      kubeadm.alpha.kubernetes.io/cri-socket: unix:///var/run/containerd/containerd.sock
+      node.alpha.kubernetes.io/ttl: "0"
+      projectcalico.org/IPv4Address: 192.168.45.69/24
+      projectcalico.org/IPv4IPIPTunnelAddr: 10.12.31.64
+      volumes.kubernetes.io/controller-managed-attach-detach: "true"
+    creationTimestamp: "2022-06-06T05:31:42Z"
+    labels:
+      beta.kubernetes.io/arch: amd64
+      beta.kubernetes.io/os: linux
+      kubernetes.io/arch: amd64
+      kubernetes.io/hostname: s9
+      kubernetes.io/os: linux
+    name: s9
+    resourceVersion: "671"
+    uid: 378e3185-acfa-4f7c-a446-08fa58b2e98e
+  spec: {}
+  status:
+    addresses:
+    - address: 192.168.45.69
+      type: InternalIP
+    - address: s9
+      type: Hostname
+    allocatable:
+      cpu: "2"
+      ephemeral-storage: "178850513829"
+      hugepages-2Mi: "0"
+      memory: 1932784Ki
+      pods: "110"
+    capacity:
+      cpu: "2"
+      ephemeral-storage: 194065228Ki
+      hugepages-2Mi: "0"
+      memory: 2035184Ki
+      pods: "110"
+    conditions:
+    - lastHeartbeatTime: "2022-06-06T05:32:13Z"
+      lastTransitionTime: "2022-06-06T05:32:13Z"
+      message: Calico is running on this node
+      reason: CalicoIsUp
+      status: "False"
+      type: NetworkUnavailable
+    - lastHeartbeatTime: "2022-06-06T05:32:20Z"
+      lastTransitionTime: "2022-06-06T05:31:59Z"
+      message: kubelet has sufficient memory available
+      reason: KubeletHasSufficientMemory
+      status: "False"
+      type: MemoryPressure
+    - lastHeartbeatTime: "2022-06-06T05:32:20Z"
+      lastTransitionTime: "2022-06-06T05:31:59Z"
+      message: kubelet has no disk pressure
+      reason: KubeletHasNoDiskPressure
+      status: "False"
+      type: DiskPressure
+    - lastHeartbeatTime: "2022-06-06T05:32:20Z"
+      lastTransitionTime: "2022-06-06T05:31:59Z"
+      message: kubelet has sufficient PID available
+      reason: KubeletHasSufficientPID
+      status: "False"
+      type: PIDPressure
+    - lastHeartbeatTime: "2022-06-06T05:32:20Z"
+      lastTransitionTime: "2022-06-06T05:32:20Z"
+      message: kubelet is posting ready status. AppArmor enabled
+      reason: KubeletReady
+      status: "True"
+      type: Ready
+    daemonEndpoints:
+      kubeletEndpoint:
+        Port: 10250
+    images:
+    - names:
+      - docker.io/calico/cni@sha256:26802bb7714fda18b93765e908f2d48b0230fd1c620789ba2502549afcde4338
+      - docker.io/calico/cni:v3.23.1
+      sizeBytes: 110500425
+    - names:
+      - k8s.gcr.io/etcd@sha256:13f53ed1d91e2e11aac476ee9a0269fdda6cc4874eba903efd40daf50c55eee5
+      - k8s.gcr.io/etcd:3.5.3-0
+      sizeBytes: 102143581
+    - names:
+      - docker.io/calico/node@sha256:f0fa77e900d79c2c9aeb4bdd03f68ed5d7fa891e404544a196e5b27203d9386e
+      - docker.io/calico/node:v3.9.6
+      sizeBytes: 88877937
+    - names:
+      - docker.io/calico/node@sha256:d2c1613ef26c9ad43af40527691db1f3ad640291d5e4655ae27f1dd9222cc380
+      - docker.io/calico/node:v3.23.1
+      sizeBytes: 76574475
+    - names:
+      - docker.io/calico/cni@sha256:fc1a5a09d4dbef71d401d620c22d4a2f064b70a9c6d52072f82fc912489a2c60
+      - docker.io/calico/cni:v3.9.6
+      sizeBytes: 57987657
+    - names:
+      - docker.io/calico/kube-controllers@sha256:e8b2af28f2c283a38b4d80436e2d2a25e70f2820d97d1a8684609d42c3973afb
+      - docker.io/calico/kube-controllers:v3.23.1
+      sizeBytes: 56361853
+    - names:
+      - k8s.gcr.io/kube-proxy@sha256:1652df3138207570f52ae0be05cbf26c02648e6a4c30ced3f779fe3d6295ad6d
+      - k8s.gcr.io/kube-proxy:v1.24.1
+      sizeBytes: 39515102
+    - names:
+      - k8s.gcr.io/kube-proxy@sha256:c957d602267fa61082ab8847914b2118955d0739d592cc7b01e278513478d6a8
+      - k8s.gcr.io/kube-proxy:v1.24.0
+      sizeBytes: 39515042
+    - names:
+      - k8s.gcr.io/kube-apiserver@sha256:ad9608e8a9d758f966b6ca6795b50a4723982328194bde214804b21efd48da44
+      - k8s.gcr.io/kube-apiserver:v1.24.1
+      sizeBytes: 33796386
+    - names:
+      - k8s.gcr.io/kube-apiserver@sha256:a04522b882e919de6141b47d72393fb01226c78e7388400f966198222558c955
+      - k8s.gcr.io/kube-apiserver:v1.24.0
+      sizeBytes: 33796127
+    - names:
+      - k8s.gcr.io/kube-controller-manager@sha256:594a3f5bbdd0419ac57d580da8dfb061237fa48d0c9909991a3af70630291f7a
+      - k8s.gcr.io/kube-controller-manager:v1.24.1
+      sizeBytes: 31035304
+    - names:
+      - k8s.gcr.io/kube-controller-manager@sha256:df044a154e79a18f749d3cd9d958c3edde2b6a00c815176472002b7bbf956637
+      - k8s.gcr.io/kube-controller-manager:v1.24.0
+      sizeBytes: 31032816
+    - names:
+      - docker.io/rancher/mirrored-flannelcni-flannel@sha256:4bf659e449be809763b04f894f53a3d8610e00cf2cd979bb4fffc9470eb40d1b
+      - docker.io/rancher/mirrored-flannelcni-flannel:v0.17.0
+      sizeBytes: 19851228
+    - names:
+      - k8s.gcr.io/kube-scheduler@sha256:db842a7c431fd51db7e1911f6d1df27a7b6b6963ceda24852b654d2cd535b776
+      - k8s.gcr.io/kube-scheduler:v1.24.0
+      sizeBytes: 15488642
+    - names:
+      - k8s.gcr.io/kube-scheduler@sha256:0d2de567157e3fb97dfa831620a3dc38d24b05bd3721763a99f3f73b8cbe99c9
+      - k8s.gcr.io/kube-scheduler:v1.24.1
+      sizeBytes: 15488358
+    - names:
+      - k8s.gcr.io/coredns/coredns@sha256:5b6ec0d6de9baaf3e92d0f66cd96a25b9edbce8716f5f15dcd1a616b3abd590e
+      - k8s.gcr.io/coredns/coredns:v1.8.6
+      sizeBytes: 13585107
+    - names:
+      - docker.io/calico/pod2daemon-flexvol@sha256:41420907445f5b77897771ac17048d9191a04898adc5af1402953d209d454a91
+      - docker.io/calico/pod2daemon-flexvol:v3.9.6
+      sizeBytes: 4908653
+    - names:
+      - docker.io/rancher/mirrored-flannelcni-flannel-cni-plugin@sha256:5dd61f95e28fa7ef897ff2fa402ce283e5078d334401d2f62d00a568f779f2d5
+      - docker.io/rancher/mirrored-flannelcni-flannel-cni-plugin:v1.0.1
+      sizeBytes: 3824037
+    - names:
+      - k8s.gcr.io/pause@sha256:bb6ed397957e9ca7c65ada0db5c5d1c707c9c8afc80a94acbe69f3ae76988f0c
+      - k8s.gcr.io/pause:3.7
+      sizeBytes: 311278
+    - names:
+      - k8s.gcr.io/pause@sha256:3d380ca8864549e74af4b29c10f9cb0956236dfb01c40ca076fb6c37253234db
+      - k8s.gcr.io/pause:3.6
+      sizeBytes: 301773
+    nodeInfo:
+      architecture: amd64
+      bootID: 98ad2a6c-6282-46d8-a87a-9efd8e545fc1
+      containerRuntimeVersion: containerd://1.6.4
+      kernelVersion: 5.4.0-72-generic
+      kubeProxyVersion: v1.24.1
+      kubeletVersion: v1.24.1
+      machineID: 961f3d48119f475ca1a7f0716492e733
+      operatingSystem: linux
+      osImage: Ubuntu 18.04.6 LTS
+      systemUUID: 564d21a7-3442-6aaa-63f7-24f514987a6d
+kind: List
+metadata:
+  resourceVersion: ""

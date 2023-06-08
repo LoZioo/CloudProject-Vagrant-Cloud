@@ -1,0 +1,4 @@
+#!/bin/bash
+source $(dirname $(readlink -f $0))/../config.sh
+
+sftp -i $SECRET_KEY -P 2222 $USER@$SERVER_2_LOCAL_ADDRESS

@@ -1,0 +1,149 @@
+---
+- name: "Common provisioning"
+  hosts: all
+  become: true    # Become root.
+
+  tasks:
+    - name: "Changing defaul sh shell with bash"
+      changed_when: false
+      ansible.builtin.command:
+        cmd: ln -sf /usr/bin/bash /usr/bin/sh
+
+    - name: "Updating packet cache"
+      ansible.builtin.apt:
+        # apt update
+        update_cache: true
+
+    # Utilities installation.
+    - name: "Ensure traceroute is installed"
+      ansible.builtin.apt:
+        # apt install
+        name: "traceroute"
+        state: present
+
+    - name: "Ensure git is installed"
+      ansible.builtin.apt:
+        name: "git"
+        state: present
+
+    - name: "Ensure jq is installed"
+      ansible.builtin.apt:
+        name: "jq"
+        state: present
+
+    # System docker uninstaller.
+    - name: "Ensure default docker is not installed"
+      ansible.builtin.apt:
+        name: "docker"
+        state: absent
+
+    - name: "Ensure default docker-engine is not installed"
+      ansible.builtin.apt:
+        name: "docker-engine"
+        state: absent
+
+    - name: "Ensure default docker.io is not installed"
+      ansible.builtin.apt:
+        name: "docker.io"
+        state: absent
+
+    - name: "Ensure default containerd is not installed"
+      ansible.builtin.apt:
+        name: "containerd"
+        state: absent
+
+    - name: "Ensure default runc is not installed"
+      ansible.builtin.apt:
+        name: "runc"
+        state: absent
+
+    # Official Docker needed packets.
+    - name: "Ensure curl is installed"
+      ansible.builtin.apt:
+        name: "curl"
+        state: present
+
+    - name: "Ensure ca-certificates is installed"
+      ansible.builtin.apt:
+        name: "ca-certificates"
+        state: present
+
+    - name: "Ensure gnupg is installed"
+      ansible.builtin.apt:
+        name: "gnupg"
+        state: present
+
+    # Official Docker repositories installation.
+    - name: "Adding Docker's official GPG key (1/3)"
+      changed_when: false
+      ansible.builtin.command:
+        cmd: install -m 0755 -d /etc/apt/keyrings
+
+    - name: "Adding Docker's official GPG key (2/3)"
+      changed_when: false
+      ansible.builtin.shell: |
+        set -o pipefail
+        curl -fsSL https://download.docker.com/linux/ubuntu/gpg |
+        gpg --batch --yes --dearmor -o /etc/apt/keyrings/docker.gpg
+
+    - name: "Adding Docker's official GPG key (3/3)"
+      changed_when: false
+      ansible.builtin.command:
+        cmd: chmod a+r /etc/apt/keyrings/docker.gpg
+
+    - name: "Adding Docker's official repository"
+      changed_when: false
+      ansible.builtin.shell: |
+        set -o pipefail
+        echo \
+        "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+        "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+        sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+    # Official Docker installation
+    - name: "Updating packet cache"
+      ansible.builtin.apt:
+        update_cache: true
+
+    - name: "Ensure docker-ce is installed"
+      ansible.builtin.apt:
+        name: "docker-ce"
+        state: present
+
+    - name: "Ensure docker-ce-cli is installed"
+      ansible.builtin.apt:
+        name: "docker-ce-cli"
+        state: present
+
+    - name: "Ensure containerd.io is installed"
+      ansible.builtin.apt:
+        name: "containerd.io"
+        state: present
+
+    - name: "Ensure docker-buildx-plugin is installed"
+      ansible.builtin.apt:
+        name: "docker-buildx-plugin"
+        state: present
+
+    - name: "Ensure docker-compose-plugin is installed"
+      ansible.builtin.apt:
+        name: "docker-compose-plugin"
+        state: present
+
+    - name: "Ensure docker is running"
+      ansible.builtin.service:
+        name: docker
+        state: started
+        enabled: true
+
+    - name: "Ensure containerd is running"
+      ansible.builtin.service:
+        name: containerd
+        state: started
+        enabled: true
+
+    - name: "Adding user to docker group"
+      ansible.builtin.user:
+        name: "{{ ansible_user }}"
+        groups: docker
+        append: true

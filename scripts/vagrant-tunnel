@@ -1,0 +1,8 @@
+#!/bin/bash
+source $(dirname $(readlink -f $0))/../config.sh
+
+ssh \
+-i $SECRET_KEY \
+-L $SERVER_1_LOCAL_ADDRESS:2222:$SERVER_1_REMOTE_ADDRESS:22 \
+-L $SERVER_2_LOCAL_ADDRESS:2222:$SERVER_2_REMOTE_ADDRESS:22 \
+$USER@$SERVER_0_ADDRESS -p 2222

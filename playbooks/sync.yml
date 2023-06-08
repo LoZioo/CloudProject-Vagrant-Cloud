@@ -1,0 +1,14 @@
+---
+- name: "Common provisioning: synchronizing repository folder"
+  hosts: all
+  become: true
+
+  tasks:
+    # Copy the main repository folder.
+    - name: "Synchronizing repository folder"
+      become_user: "{{ ansible_user }}"
+
+      ansible.posix.synchronize:
+        src: "../../../CloudProject-Cloud"
+        dest: ""
+        delete: true

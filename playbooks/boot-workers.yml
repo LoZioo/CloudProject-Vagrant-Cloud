@@ -1,0 +1,11 @@
+---
+- name: "Kubernetes workers provisioning"
+  hosts: workers
+  become: true
+
+  tasks:
+    - name: "Booting Kubernetes workers"
+      changed_when: false
+      ansible.builtin.command:
+        chdir: "/home/{{ ansible_user }}/CloudProject-Cloud/setup_kube"
+        cmd: "./boot_worker.sh"
