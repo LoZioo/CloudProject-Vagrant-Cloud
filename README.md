@@ -1,5 +1,5 @@
-# CloudProject-Cloud
-Cloud project Cloud section repository.
+# CloudProject-Vagrant-Cloud
+Cloud project Vagrant dummy cloud section repository..
 
 ## Prepare your envroiment
 1. Install Ansible as a python dependency:
