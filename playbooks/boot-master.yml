@@ -8,7 +8,7 @@
       become_user: "{{ ansible_user }}"
       register: kube_key
       ansible.builtin.slurp:
-        path: "~/CloudProject-Cloud/setup_kube/kube_key.pem.pub"
+        path: "~/{{ repo_name }}/setup_kube/kube_key.pem.pub"
 
     - name: "Adding kube_key.pem.pub to authorized_keys"
       become_user: "{{ ansible_user }}"
@@ -22,5 +22,5 @@
     - name: "Booting Kubernetes master"
       changed_when: false
       ansible.builtin.command:
-        chdir: "/home/{{ ansible_user }}/CloudProject-Cloud/setup_kube"
+        chdir: "/home/{{ ansible_user }}/{{ repo_name }}/setup_kube"
         cmd: "./boot_master.sh"

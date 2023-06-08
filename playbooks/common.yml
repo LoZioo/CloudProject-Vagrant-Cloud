@@ -152,5 +152,5 @@
     - name: "Installing Kubernetes"
       changed_when: false
       ansible.builtin.command:
-        chdir: "/home/{{ ansible_user }}/CloudProject-Cloud/setup_kube"
+        chdir: "/home/{{ ansible_user }}/{{ repo_name }}/setup_kube"
         cmd: "./install_kube.sh"
