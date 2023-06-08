@@ -6,11 +6,16 @@ Cloud project Vagrant dummy cloud section repository..
 	```
 	pip install -r requirements.txt
 	```
-2. Edit `config.sh` and configure it to match your infrastructure.
-3. Generate your Ansible's `hosts.ini` by running `compile-ansible-hosts.sh`.
-4. Generate a new ed25519 keypair under the `setup_kube` folder by running `generate-kube-keypair.sh`.
-5. Run every Ansible playbook under `playbooks` by running `playbook-run-all.sh`.
-6. To build the Docker images, refer to the [CloudProject-Edge](https://github.com/LoZioo/CloudProject-Edge) repository.
+2. Edit `config.sh` and `Vagrantfile.rb`, configuring them to match your infrastructure.
+3. Generate your `Vagrantfile` by running `compile-Vagrantfile.sh`.
+4. Generate your Ansible's `hosts.ini` by running `compile-ansible-hosts.sh`.
+5. Generate a new ed25519 keypair under the `setup_kube` folder by running `generate-kube-keypair.sh`.
+6. Bring up your infrastructure:
+	```
+	vagrant up
+	```
+7. Run every Ansible playbook under `playbooks` by running `playbook-run-all.sh`.
+8. To build the Docker images, refer to the [CloudProject-Edge](https://github.com/LoZioo/CloudProject-Edge) repository.
 
 ## Repo structure
 - [scripts](scripts): ssh, tunneling and sftp bash scripts.
@@ -19,6 +24,7 @@ Cloud project Vagrant dummy cloud section repository..
 - [data](data): here you will find application specific runtime files.
 - [setup_kube](setup_kube): Kubernetes installer.
 - [config.sh](config.sh): configure it to match your infrastructure.
+- [compile-Vagrantfile.sh](compile-Vagrantfile.sh): generate the `Vagrantfile` file.
 - [compile-ansible-hosts.sh](compile-ansible-hosts.sh): generate the `hosts.ini` file.
 - [playbook-run.sh](playbook-run.sh): run the specified Ansible playbook inside the [playbooks](playbooks) folder.
 - [playbook-run-all.sh](playbook-run-all.sh): automatically run every Ansible playbook inside the [playbooks](playbooks) folder (fixed order).
