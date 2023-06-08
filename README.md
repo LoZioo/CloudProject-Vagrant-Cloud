@@ -16,6 +16,10 @@ Cloud project Vagrant dummy cloud section repository..
 	```
 7. Run every Ansible playbook under `playbooks` by running `playbook-run-all.sh`.
 8. To build the Docker images, refer to the [CloudProject-Edge](https://github.com/LoZioo/CloudProject-Edge) repository.
+9. To stop the cluster, run:
+	```
+	./playbook-run.sh cluster-teardown
+	```
 
 ## Repo structure
 - [scripts](scripts): ssh, tunneling and sftp bash scripts.
@@ -36,3 +40,4 @@ Cloud project Vagrant dummy cloud section repository..
 - `common`: install all the needed utilities.
 - `boot-master`: start the Kubernetes control plane.
 - `boot-workers`: start the Kubernetes workers.
+- `cluster-teardown`: stop the Kubernetes cluster.

@@ -1,0 +1,22 @@
+---
+- name: "Kubernetes workers teardown"
+  hosts: workers
+  become: true
+
+  tasks:
+    - name: "Stopping Kubernetes workers"
+      changed_when: false
+      ansible.builtin.command:
+        chdir: "/home/{{ ansible_user }}/{{ repo_name }}/setup_kube"
+        cmd: "./reset_kube.sh"
+
+- name: "Kubernetes master teardown"
+  hosts: master
+  become: true
+
+  tasks:
+    - name: "Stopping Kubernetes master"
+      changed_when: false
+      ansible.builtin.command:
+        chdir: "/home/{{ ansible_user }}/{{ repo_name }}/setup_kube"
+        cmd: "./reset_kube.sh"
