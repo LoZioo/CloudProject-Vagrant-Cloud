@@ -3,7 +3,7 @@
 set -e
 cd playbooks
 
-playbooks=("sync" "common" "blockchain" "install-kube" "boot-master" "boot-workers")
+playbooks=("sync" "common" "boot-master" "boot-workers")
 
 for playbook in "${playbooks[@]}"
 do

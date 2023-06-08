@@ -1,3 +1,4 @@
+.vagrant
 .python-version
 Vagrantfile
 hosts.ini

@@ -1,6 +1,6 @@
 ---
 - name: "Common provisioning"
-  hosts: all
+  hosts: cluster
   become: true    # Become root.
 
   tasks:
@@ -100,7 +100,7 @@
         "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
         sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
-    # Official Docker installation
+    # Official Docker installation.
     - name: "Updating packet cache"
       ansible.builtin.apt:
         update_cache: true
@@ -147,3 +147,10 @@
         name: "{{ ansible_user }}"
         groups: docker
         append: true
+
+    # Kubernetes installation.
+    - name: "Installing Kubernetes"
+      changed_when: false
+      ansible.builtin.command:
+        chdir: "/home/{{ ansible_user }}/CloudProject-Cloud/setup_kube"
+        cmd: "./install_kube.sh"

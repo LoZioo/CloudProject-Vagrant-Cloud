@@ -9,6 +9,6 @@
       become_user: "{{ ansible_user }}"
 
       ansible.posix.synchronize:
-        src: "../../../CloudProject-Cloud"
+        src: "../../../{{ repo_name }}"
         dest: ""
         delete: true
