@@ -39,6 +39,6 @@ Cloud project Vagrant dummy cloud section repository..
 ## Playbooks for provisioning
 - `sync`: sync via rsync the entire local repository folder, including secrets, literally every file you have added in that folder so far, so be careful!
 - `common`: install all the needed utilities.
-- `boot-master`: start the Kubernetes control plane (do NOT run it when the cluster is rebooted).
-- `boot-workers`: start the Kubernetes workers (run it when the cluster is rebooted).
-- `cluster-teardown`: stop the Kubernetes cluster.
+- `boot-master`: start the Kubernetes control plane.
+- `boot-workers`: start the Kubernetes workers.
+- `cluster-teardown`: stops the Kubernetes cluster and remove the previously registered workers.
