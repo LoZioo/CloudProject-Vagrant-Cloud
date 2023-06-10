@@ -22,5 +22,5 @@ KHOSTS[w2]=$W2_IP
 KUSER=$USER
 
 # Kubernetes infrastructure.
-KUBE_SERVICES=$(cd services; ls -d */ | sed "s/\///g")
+KUBE_SERVICES=($(cd services; ls -d */ | sed "s/\///g"))
 KUBE_RESOURCES=("deployment" "service")
