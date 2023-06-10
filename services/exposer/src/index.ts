@@ -1,3 +1,5 @@
+import axios from "axios";
+
 // HTTP server.
 const HTTP_ADDRESS = "0.0.0.0";
 const HTTP_PORT = 80;
@@ -59,6 +61,7 @@ catch(e){
 }
 
 const BLOCKCHAIN_ADDRESS = env.BLOCKCHAIN_ADDRESS as string;
+const BLOCKCHAIN_ENDPOINT = format("http://%s:%d", BLOCKCHAIN_ADDRESS, BLOCKCHAIN_PORT);
 
 try {
 	assert("OPENSTACK_CONTAINER_NAME" in env);
@@ -107,13 +110,21 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.get("/blockchain/block/get", async (req: Request, res: Response) => {
-	// res.sendStatus(200);
-	res.send(BLOCKCHAIN_ADDRESS);
+	let ret: Array<BlockchainBlock_t> = [];
+
+	try {
+    ret = (await axios.post(BLOCKCHAIN_ENDPOINT + "/block/get")).data;
+  }
+	catch(e){
+    res.status(500).send(format("Error: can't connect to the Blockchain service: %s.", e));
+  }
+
+	res.send(ret);
 });
 
 app.get("/container/block/get", async (req: Request, res: Response) => {
-	// res.sendStatus(200);
-	res.send(OPENSTACK_CONTAINER_NAME);
+	const ret: Array<CloudBlock_t> = [];
+	res.send(ret);
 });
 
 const server = app.listen(HTTP_PORT, HTTP_ADDRESS, () => {
