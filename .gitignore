@@ -1,4 +1,8 @@
+# Files.
 .vagrant
 .python-version
 Vagrantfile
 hosts.ini
+
+# Folders.
+build
