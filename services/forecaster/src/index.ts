@@ -4,9 +4,6 @@ import axios from "axios";
 const HTTP_ADDRESS = "0.0.0.0";
 const HTTP_PORT = 80;
 
-// Blockchain port.
-const BLOCKCHAIN_PORT = 5090;
-
 // Cloud block.
 interface CloudBlock_t {
 	VA:					Array<number>,
