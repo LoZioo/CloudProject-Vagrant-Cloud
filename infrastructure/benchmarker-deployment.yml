@@ -1,0 +1,24 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: benchmarker
+
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: benchmarker
+
+  template:
+    metadata:
+      labels:
+        app: benchmarker
+
+    spec:
+      containers:
+      - name: benchmarker
+        image: docker.io/lozioo/benchmarker:latest
+        ports:
+        - containerPort: 80
