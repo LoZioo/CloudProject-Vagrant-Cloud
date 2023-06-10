@@ -16,12 +16,6 @@ interface CloudBlock_t {
 	hash:				string,
 }
 
-// Blockchain block.
-interface BlockchainBlock_t {
-	timestamp:	string,
-	hash:				string,
-}
-
 // App log.
 import { format } from  "util";
 import { stdout, stderr } from "process";
@@ -66,16 +60,24 @@ app.get("/", async (req: Request, res: Response) => {
 });
 
 app.get("/forecast/:filename", async (req: Request, res: Response) => {
-	let ret: Array<CloudBlock_t> = [];
-
 	try {
-		ret = (await axios.get(OPENSTACK_CONTAINER + req.params.filename)).data;
+		const block = (await axios.get(OPENSTACK_CONTAINER + req.params.filename)).data as CloudBlock_t;
+		const ret = {
+			VA: block.VA.reduce((sum, val) => sum + val),
+			W: block.W.reduce((sum, val) => sum + val),
+
+			timestamp: block.timestamp,
+			hash: block.hash
+		};
+
+		ret.VA /= block.VA.length;
+		ret.W /= block.W.length;
+
+		res.send(ret);
 	}
 	catch(e){
 		res.status(500).send(format("Error with the openstack container: %s.", e));
 	}
-
-	res.send(ret);
 });
 
 const server = app.listen(HTTP_PORT, HTTP_ADDRESS, () => {
