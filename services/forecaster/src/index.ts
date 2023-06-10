@@ -56,7 +56,7 @@ app.get("/", async (req: Request, res: Response) => {
 
 	try {
 		const data = (await axios.get(OPENSTACK_CONTAINER)).data as string;
-		ret = data.split("\n").map(e => "/" + e);
+		ret = data.split("\n").map(e => "/forecast/" + e);
 	}
 	catch(e){
 		res.status(500).send(format("Error with the openstack container: %s.", e));
