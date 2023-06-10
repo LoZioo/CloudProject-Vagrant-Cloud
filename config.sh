@@ -22,13 +22,5 @@ KHOSTS[w2]=$W2_IP
 KUSER=$USER
 
 # Kubernetes infrastructure.
+KUBE_SERVICES=$(cd services; ls -d */ | sed "s/\///g")
 KUBE_RESOURCES=("deployment" "service")
-KUBE_REGEXP="\
-s|<IMAGE_NAME>|docker.io/lozioo/apache-testserver:latest|g;\
-s|<DEPLOYMENT_NAME>|apache|g;\
-s|<SERVICE_NAME>|apache-service|g;\
-s|<SERVICE_REPLICAS>|4|g;\
-s|<SERVICE_IP>|$M_IP|g;\
-s|<SERVICE_EXTERNAL_PORT>|80|g;\
-s|<SERVICE_INTERNAL_PORT>|80|g;\
-"

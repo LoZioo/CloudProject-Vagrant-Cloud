@@ -4,18 +4,23 @@
 source config.sh
 
 set -e
-cd infrastructure/build
+cd infrastructure
 
-for resource in "${KUBE_RESOURCES[@]}"
+for service in "${KUBE_SERVICES[@]}"
 do
-	echo "Deleting $resource..."
-	if [ "$1" = "-d" ]; then
-		echo "Dry run"
-	else
-		kubectl delete -f $resource.yml
-	fi
+	for resource in "${KUBE_RESOURCES[@]}"
+	do
+		full_name="$service-$resource"
 
-	echo
+		echo "Creating $full_name..."
+		if [ "$1" = "-d" ]; then
+			echo "Dry run"
+		else
+			kubectl delete -f $full_name.yml
+		fi
+
+		echo
+	done
 done
 
 echo Ok

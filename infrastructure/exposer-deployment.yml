@@ -1,0 +1,31 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: exposer
+
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: exposer
+
+  template:
+    metadata:
+      labels:
+        app: exposer
+
+    spec:
+      containers:
+      - name: exposer
+        image: docker.io/lozioo/exposer:latest
+        ports:
+        - containerPort: 80
+
+        env:
+        - name: BLOCKCHAIN_ADDRESS
+          value: 90.147.185.8
+
+        - name: OPENSTACK_CONTAINER_NAME
+          value: ds-bucket
