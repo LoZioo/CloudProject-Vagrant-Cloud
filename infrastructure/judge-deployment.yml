@@ -1,0 +1,24 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: judge
+
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: judge
+
+  template:
+    metadata:
+      labels:
+        app: judge
+
+    spec:
+      containers:
+      - name: judge
+        image: docker.io/lozioo/judge:latest
+        ports:
+        - containerPort: 80
