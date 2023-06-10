@@ -15,6 +15,7 @@ Cloud project Vagrant dummy cloud section repository..
 	vagrant up
 	```
 7. Run every Ansible playbook under `playbooks` by running `playbook-run-all.sh`.
+8. When the cluster is ready, run all services by running `kube-service-up.sh`.
 8. To build the Docker images, refer to the [CloudProject-Edge](https://github.com/LoZioo/CloudProject-Edge) repository.
 9. To stop the cluster, run:
 	```
@@ -34,8 +35,9 @@ Cloud project Vagrant dummy cloud section repository..
 - [playbook-run.sh](playbook-run.sh): run the specified Ansible playbook inside the [playbooks](playbooks) folder.
 - [playbook-run-all.sh](playbook-run-all.sh): automatically run every Ansible playbook inside the [playbooks](playbooks) folder (fixed order).
 - [generate-kube-keypair.sh](generate-kube-keypair.sh): Generate the needed keypair for Kubernetes setup.
-- [kube-service-up.sh](kube-service-up.sh): Generate and run parameterized yml files inside the [infrastructure/build](infrastructure) folder (fixed order).
+- [kube-service-up.sh](kube-service-up.sh): Create the specified resources inside the [infrastructure](infrastructure) folder (fixed order).
 - [kube-service-down.sh](kube-service-down.sh): Delete the previously created resources.
+- [kube-service-restart.sh](kube-service-restart.sh): Force Kubernetes to pull the updated images.
 - [requirements.txt](requirements.txt): Ansible python dependencies.
 
 ## Playbooks for provisioning
