@@ -22,24 +22,6 @@ interface BlockchainBlock_t {
 	hash:				string,
 }
 
-/**
- * Check if obj is a CloudBlock_t object (check keys only, not values).
- * @param obj
- * @returns obj is CloudBlock_t
- */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function is_CloudBlock_t(obj: any): obj is CloudBlock_t {
-	const testObj: CloudBlock_t = {
-		VA: [],
-		W: [],
-		timestamp: "",
-		hash: ""
-	};
-
-	const keys = Object.keys(testObj);
-	return keys.every(key => key in obj);
-}
-
 // App log.
 import { format } from  "util";
 import { stdout, stderr } from "process";
@@ -64,14 +46,14 @@ const BLOCKCHAIN_ADDRESS = env.BLOCKCHAIN_ADDRESS as string;
 const BLOCKCHAIN_ENDPOINT = format("http://%s:%d", BLOCKCHAIN_ADDRESS, BLOCKCHAIN_PORT);
 
 try {
-	assert("OPENSTACK_CONTAINER_NAME" in env);
+	assert("OPENSTACK_CONTAINER" in env);
 }
 catch(e){
-	log("OPENSTACK_CONTAINER_NAME envroiment variable not set, exiting...", "Error", stderr);
+	log("OPENSTACK_CONTAINER envroiment variable not set, exiting...", "Error", stderr);
 	process.exit(1);
 }
 
-const OPENSTACK_CONTAINER_NAME = env.OPENSTACK_CONTAINER_NAME as string;
+const OPENSTACK_CONTAINER = env.OPENSTACK_CONTAINER as string;
 
 // Express server.
 import express, { Request, Response } from "express";
@@ -124,6 +106,20 @@ app.get("/blockchain/block/get", async (req: Request, res: Response) => {
 
 app.get("/container/block/get", async (req: Request, res: Response) => {
 	const ret: Array<CloudBlock_t> = [];
+
+	try {
+		const data = (await axios.get(OPENSTACK_CONTAINER)).data as string;
+		const files = data.split("\n");
+
+		for(const file of files){
+			const data = (await axios.get(OPENSTACK_CONTAINER + file)).data;
+			ret.push(data);
+		}
+	}
+	catch(e){
+		res.status(500).send(format("Error with the openstack container: %s.", e));
+	}
+
 	res.send(ret);
 });
 
