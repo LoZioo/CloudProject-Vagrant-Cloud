@@ -1,0 +1,114 @@
+# exposer
+---
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: exposer
+
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: exposer
+
+  template:
+    metadata:
+      labels:
+        app: exposer
+
+    spec:
+      containers:
+      - name: exposer
+        image: docker.io/lozioo/exposer:latest
+        ports:
+        - containerPort: 80
+
+        env:
+        - name: BLOCKCHAIN_ADDRESS
+          value: 90.147.185.8
+
+        - name: OPENSTACK_CONTAINER
+          value: https://swift.cloud.garr.it/swift/v1/ds-bucket/
+
+# forecaster
+---
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: forecaster
+
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: forecaster
+
+  template:
+    metadata:
+      labels:
+        app: forecaster
+
+    spec:
+      containers:
+      - name: forecaster
+        image: docker.io/lozioo/forecaster:latest
+        ports:
+        - containerPort: 80
+
+        env:
+        - name: OPENSTACK_CONTAINER
+          value: https://swift.cloud.garr.it/swift/v1/ds-bucket/
+
+# benchmarker
+---
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: benchmarker
+
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: benchmarker
+
+  template:
+    metadata:
+      labels:
+        app: benchmarker
+
+    spec:
+      containers:
+      - name: benchmarker
+        image: docker.io/lozioo/benchmarker:latest
+        ports:
+        - containerPort: 80
+
+# judge
+---
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: judge
+
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: judge
+
+  template:
+    metadata:
+      labels:
+        app: judge
+
+    spec:
+      containers:
+      - name: judge
+        image: docker.io/lozioo/judge:latest
+        ports:
+        - containerPort: 80
