@@ -2,8 +2,6 @@
 # You can pass -d for a dry run.
 
 source config.sh
-
-set -e
 cd infrastructure
 
 for service in "${KUBE_SERVICES[@]}"
