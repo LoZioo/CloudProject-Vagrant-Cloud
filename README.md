@@ -20,8 +20,9 @@ Cloud project Vagrant dummy cloud section repository..
 	vagrant ssh m
 	```
 8. Now from the master's shell, run all the needed files under the `infrastructure` folder with:
-	```
-	kubectl apply -f file_name.yml
+	```bash
+	kubectl apply -f file_name.yml		# Create the described components.
+	kubectl delete -f file_name.yml		# Delete the described components.
 	```
 8. To build the Docker images, refer to the [CloudProject-Edge](https://github.com/LoZioo/CloudProject-Edge) repository.
 9. To stop the cluster, run:
