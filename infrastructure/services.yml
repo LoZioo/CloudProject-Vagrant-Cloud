@@ -7,7 +7,9 @@ metadata:
   name: exposer-service
 
 spec:
+  # type: NodePort
   type: LoadBalancer
+
   externalIPs:
   - 192.168.1.71
 
@@ -27,7 +29,9 @@ metadata:
   name: forecaster-service
 
 spec:
+  # type: NodePort
   type: LoadBalancer
+
   externalIPs:
   - 192.168.1.71
 
@@ -47,7 +51,9 @@ metadata:
   name: benchmarker-service
 
 spec:
+  # type: NodePort
   type: LoadBalancer
+
   externalIPs:
   - 192.168.1.71
 
@@ -67,7 +73,9 @@ metadata:
   name: judge-service
 
 spec:
+  # type: NodePort
   type: LoadBalancer
+
   externalIPs:
   - 192.168.1.71
 
